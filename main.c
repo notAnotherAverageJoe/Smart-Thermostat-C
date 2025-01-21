@@ -16,7 +16,8 @@ int main()
         printf("Thermostat System\n");
         printf("1. Adjust Heating\n");
         printf("2. Adjust Cooling\n");
-        printf("3. Exit\n");
+        printf("3. Adjust Settings\n");
+        printf("4. Exit\n");
         printf("------------------------\n");
 
         // current temp
@@ -29,11 +30,10 @@ int main()
         {
             printf("Invalid input. Please enter a valid number.\n");
 
-            // Clear the input buffer
             while (getchar() != '\n')
                 ;
 
-            continue; // Prompt the user again
+            continue;
         }
 
         switch (userChoice)
@@ -57,6 +57,11 @@ int main()
             break;
 
         case 3:
+            printf("\nAdjust System Settings.\n");
+            hasPower = false;
+            break;
+
+        case 4:
             printf("\nExiting Thermostat System. Goodbye!\n");
             hasPower = false;
             break;
