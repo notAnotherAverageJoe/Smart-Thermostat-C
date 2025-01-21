@@ -8,18 +8,14 @@ int getKeyPress()
     struct termios oldt, newt;
     int ch;
 
-    // Save the old terminal attributes
     tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
 
-    // Disable canonical mode and echo
     newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-    // Read a single character
     ch = getchar();
 
-    // Restore the old attributes
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return ch;
 }
@@ -69,23 +65,24 @@ void updateThermostat(struct Thermostat *thermostat)
                     printf("Exiting Heating Target adjustment.\n");
                     break;
                 }
-                else if (key == 65) // Up arrow (ASCII code for up)
+                else if (key == 65)
                 {
                     thermostat->heating.targetTemp++;
                 }
-                else if (key == 66) // Down arrow (ASCII code for down)
+                else if (key == 66)
                 {
                     thermostat->heating.targetTemp--;
                 }
             }
             break;
 
-        case 2: // Adjust Cooling Target
+        case 2:
             printf("Cooling Target Selected.\n");
             while (true)
             {
                 printf("Current Cooling Target: %d\n", thermostat->cooling.targetTemp);
                 printf("Use Up/Down arrows to adjust the cooling target. Press 'q' to quit.\n");
+                printf("============================\n");
 
                 int key = getKeyPress();
 
@@ -94,11 +91,11 @@ void updateThermostat(struct Thermostat *thermostat)
                     printf("Exiting Cooling Target adjustment.\n");
                     break;
                 }
-                else if (key == 65) // Up arrow
+                else if (key == 65)
                 {
                     thermostat->cooling.targetTemp++;
                 }
-                else if (key == 66) // Down arrow
+                else if (key == 66)
                 {
                     thermostat->cooling.targetTemp--;
                 }
