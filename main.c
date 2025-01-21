@@ -58,7 +58,8 @@ int main()
 
         case 3:
             printf("\nAdjust System Settings.\n");
-            hasPower = false;
+            updateThermostat(&thermostat);
+
             break;
 
         case 4:
