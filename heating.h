@@ -9,7 +9,7 @@ struct Heating
     int targetTemp;
     bool isHeating;
 };
-
+// update heating only
 void updateHeating(struct Heating *heating);
 
-#endif // HEATING_H
+#endif 
